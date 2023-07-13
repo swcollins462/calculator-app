@@ -4,6 +4,8 @@ import NumericDisplay from "./components/NumericDisplay/NumericDisplay";
 import CalculatorButtons from "./components/CalculatorButtons/CalculatorButtons";
 import "./App.css";
 
+Decimal.config({ precision: 12, toExpPos: 12, toExpNeg: -12 });
+
 export const ACTIONS = {
   ADD_DIGIT: 'add-digit',
   CHOOSE_OPERATION: 'choose-operation',
