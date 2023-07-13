@@ -28,6 +28,7 @@ Future improvement could include:
 
 ## User Stories
 
+```
 AS A student
 I WANT TO multiply and divide
 SO THAT I can complete my homework
@@ -39,6 +40,7 @@ SO THAT I can balance my checkbook
 AS A shopper
 I WANT TO calculate expenses
 SO THAT I can plan my purchases
+```
 
 # Getting Started with Create React App
 
