@@ -1,0 +1,23 @@
+.output {
+    font-family: Calibri, sans-serif;
+    height: 109px;
+    grid-column: 1 / -1;
+    background-color: #151515;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: .75rem;
+}
+
+.memory-display, .previous-operand {
+color: rgba(255, 255, 255, .75);
+font-size: 1.5rem;
+height: 29px;
+}
+
+.current-operand {
+color: white;
+font-size: 2.6rem;
+height: 51px;
+}

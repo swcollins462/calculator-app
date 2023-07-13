@@ -51,7 +51,7 @@ export default function CalculatorButtons({ dispatch, currentOperand }) {
           <DigitButton digit="." dispatch={dispatch} />
           <DigitButton digit="0" dispatch={dispatch} />
           <button 
-              className="span-two eval-button" 
+              className="eval-button" 
               onClick={() => dispatch({ type: ACTIONS.EVALUATE })}
           >
               =

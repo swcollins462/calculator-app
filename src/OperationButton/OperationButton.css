@@ -1,0 +1,12 @@
+.op-button {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 2.6rem;
+    color: whitesmoke;
+    cursor: pointer;
+    outline: none;
+    background-color: #272B2E;
+}
+
+.op-button:hover {
+    background-color: #323639;
+}
