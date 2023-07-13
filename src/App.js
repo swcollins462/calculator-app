@@ -101,6 +101,56 @@ function reducer(state, { type, payload }) {
         };
       };
       return state;
+    case ACTIONS.MEMORY_CLEAR:
+      return {
+        ...state,
+        memory: null
+      };
+    case ACTIONS.MEMORY_ADD:
+      if (state.currentOperand === "." || state.currentOperand === "0.") return state;
+      if (state.memory != null && state.currentOperand !== "0") {
+        const plusOperand = new Decimal(state.memory);
+        return {
+          ...state,
+          memory: plusOperand.plus(state.currentOperand).val(),
+          overwrite: true
+        };
+      } else if (state.currentOperand !== "0") {
+        const plusOperand = new Decimal(state.currentOperand);
+        return {
+          ...state,
+          memory: plusOperand.val(),
+          overwrite: true
+        };
+      }
+      return state;
+    case ACTIONS.MEMORY_SUBTRACT:
+      if (state.currentOperand === "." || state.currentOperand === "0.") return state;
+      if (state.memory != null && state.currentOperand !== "0") {
+        const minusOperand = new Decimal(state.memory);
+        return {
+          ...state,
+          memory: minusOperand.minus(state.currentOperand).val(),
+          overwrite: true
+        };
+      } else if (state.currentOperand !== "0") {
+        const minusOperand = new Decimal(0);
+        return {
+          ...state,
+          memory: minusOperand.minus(state.currentOperand).val(),
+          overwrite: true
+        };
+      }
+      return state;
+    case ACTIONS.MEMORY_RECALL:
+      if (state.memory != null) {
+        return {
+          ...state,
+          currentOperand: state.memory,
+          overwrite: true
+        }
+      };
+      return state;
     case ACTIONS.EVALUATE: 
       if (
         state.operation == null ||
@@ -145,6 +195,18 @@ function evaluate({ currentOperand, previousOperand, operation}) {
     computation = "Error"
   };
   return computation.toString()
+};
+
+const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
+  maximumFractionDigits: 0,
+});
+
+function formatOperand(operand) {
+  if (operand == null) return
+  if (operand === "Error") return "Error";
+  const [integer, decimal] = operand.split('.')
+  if (decimal == null) return INTEGER_FORMATTER.format(integer)
+  return `${INTEGER_FORMATTER.format(integer)}.${decimal}`
 };
 
 const initialState = {
