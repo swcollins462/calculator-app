@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+import Decimal from "decimal.js-light";
 import NumericDisplay from "./components/NumericDisplay/NumericDisplay";
 import CalculatorButtons from "./components/CalculatorButtons/CalculatorButtons";
 import "./App.css";
@@ -46,10 +47,11 @@ function reducer(state, { type, payload }) {
           operation: payload.operation,
         };
       } else if (state.previousOperand == null) {
+        const operand = new Decimal(state.currentOperand);
         return {
           ...state,
           operation: payload.operation,
-          previousOperand: state.currentOperand,
+          previousOperand: operand.val(),
           currentOperand: "0",
         };
       };
@@ -75,21 +77,25 @@ function reducer(state, { type, payload }) {
     case ACTIONS.NEGATE:
       if (state.currentOperand === "." || state.currentOperand === "0.") return state;
       if (state.currentOperand !== "0") {
+        const entry = new Decimal(state.currentOperand);
         return {
           ...state,
-          currentOperand: state.currentOperand
+          currentOperand: entry.negated().val()
         };
       };
       return state;
     case ACTIONS.PERCENT:
       if (state.currentOperand === "." || state.currentOperand === "0.") return state;
+      const entry = new Decimal(state.currentOperand);
       if (state.operation === "+" || state.operation === "−") {
         return {
-
+        ...state,
+        currentOperand: entry.dividedBy(100).times(state.previousOperand).val()
         };
       } else if (state.currentOperand !== "0") {
         return {
-          
+          ...state,
+          currentOperand: entry.dividedBy(100).val()
         };
       };
       return state;
@@ -113,8 +119,29 @@ function reducer(state, { type, payload }) {
 };
 
 function evaluate({ currentOperand, previousOperand, operation}) {
+  const prev = new Decimal(previousOperand);
+  const current = new Decimal(currentOperand);
   let computation = ""
-
+  try {
+    switch(operation) {
+      case "+":
+        computation = prev.plus(current);
+        break
+      case "−":
+        computation = prev.minus(current);
+        break
+      case "×":
+        computation = prev.times(current);
+        break
+      case "÷":
+        computation = current.d[0] === 0 ? "Error" : prev.dividedBy(current);
+        break
+      default:
+        return;
+    };
+  } catch {
+    computation = "Error"
+  };
   return computation.toString()
 };
 
