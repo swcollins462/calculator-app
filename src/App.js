@@ -1,5 +1,7 @@
 import { useReducer } from "react";
-import './App.css';
+import NumericDisplay from "./components/NumericDisplay/NumericDisplay";
+import CalculatorButtons from "./components/CalculatorButtons/CalculatorButtons";
+import "./App.css";
 
 const initialState = {
   currentOperand: "0",
