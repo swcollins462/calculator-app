@@ -7,10 +7,11 @@ Hosting link:
 Robust calculator app providing basic arithmetic functions. The app handles floating point math errors, calculates percentages, allows for the input of negative numbers, and automatically converts large numbers to exponent format. Values in the display are formatted with comma separators for readability. A memory function is provided that allows the user to store a value, add numbers to or subtract from the stored value, and recall the stored value for further calculations.
 
 Memory functions:
-MC: clears the value currently stored in memory
-M+: adds the current value to the memory value
-M-: subtracts the current value from the memory value
-MR: recalls the memory value and displays it as the current value for further calculations
+
+1. MC: clears the value currently stored in memory
+2. M+: adds the current value to the memory value
+3. M-: subtracts the current value from the memory value
+4. MR: recalls the memory value and displays it as the current value for further calculations
 
 Technologies used include:
 
