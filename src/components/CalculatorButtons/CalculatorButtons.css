@@ -1,24 +1,29 @@
 .button {
-    font-family: Calibri, sans-serif;
+    font-family: "Libre Franklin", sans-serif;
     font-size: 2.4rem;
     color: whitesmoke;
     cursor: pointer;
     background-color: #272B2E;
+    border: outset 2px black;
 }
 
 .memory-button {
-    font-family: Calibri, sans-serif;
     font-size: 2rem;
-    color: whitesmoke;
-    cursor: pointer;
     background-color: #393939;
 }
 
+.digit-button {
+    font-size: 2.4rem;
+    background-color: #1F1F1F;
+}
+
+.op-button {
+    font-size: 2.8rem;
+    background-color: #272B2E;
+}
+
 .eval-button {
-    font-family: Calibri, sans-serif;
-    font-size: 2.5rem;
-    color: whitesmoke;
-    cursor: pointer;
+    font-size: 2.8rem;
     background-color: #003b12;
     grid-column: span 2;
 }
@@ -29,6 +34,14 @@
 
 .memory-button:hover {
     background-color: #444;
+}
+
+.digit-button:hover {
+    background-color: #292929;
+}
+
+.op-button:hover {
+    background-color: #323639;
 }
 
 .eval-button:hover {

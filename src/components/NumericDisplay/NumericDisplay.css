@@ -1,6 +1,6 @@
 .output {
-    font-family: Calibri, sans-serif;
-    height: 109px;
+    font-family: "Libre Franklin", sans-serif;
+    height: 117px;
     grid-column: 1 / -1;
     background-color: #151515;
     display: flex;
@@ -13,11 +13,11 @@
 .memory-display, .previous-operand {
 color: rgba(255, 255, 255, .75);
 font-size: 1.5rem;
-height: 29px;
+height: 31px;
 }
 
 .current-operand {
 color: white;
-font-size: 2.6rem;
-height: 51px;
+font-size: 2.7rem;
+height: 55px;
 }

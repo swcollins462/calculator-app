@@ -1,27 +1,27 @@
 import { ACTIONS } from "../../App.js";
-import DigitButton from "../DigitButton/DigitButton.jsx";
-import OperationButton from "../OperationButton/OperationButton.jsx";
+import DigitButton from "./DigitButton.jsx";
+import OperationButton from "./OperationButton.jsx";
 import "./CalculatorButtons.css";
 
 export default function CalculatorButtons({ dispatch, currentOperand }) {
     return (
         <>
-            <button className="memory-button" onClick={() => dispatch({ 
+            <button className="button memory-button" onClick={() => dispatch({ 
                 type: ACTIONS.MEMORY_CLEAR 
             })}>
                 MC
             </button>
-            <button className="memory-button" onClick={() => dispatch({ 
+            <button className="button memory-button" onClick={() => dispatch({ 
                 type: ACTIONS.MEMORY_ADD 
             })}>
                 M+
             </button>
-            <button className="memory-button" onClick={() => dispatch({ 
+            <button className="button memory-button" onClick={() => dispatch({ 
                 type: ACTIONS.MEMORY_SUBTRACT 
             })}>
                 M−
             </button>
-            <button className="memory-button" onClick={() => dispatch({ 
+            <button className="button memory-button" onClick={() => dispatch({ 
                 type: ACTIONS.MEMORY_RECALL 
             })}>
                 MR
@@ -29,7 +29,7 @@ export default function CalculatorButtons({ dispatch, currentOperand }) {
             <button className="button" onClick={() => dispatch({ type: ACTIONS.CLEAR })}>
                 {currentOperand === "0" ? "AC" : "C"}
             </button>
-            <button className="op-button" onClick={() => dispatch({ type: ACTIONS.NEGATE })}>
+            <button className="button op-button" onClick={() => dispatch({ type: ACTIONS.NEGATE })}>
                 ±
             </button>
             <button className="button" onClick={() => dispatch({ type: ACTIONS.PERCENT })}>
@@ -51,7 +51,7 @@ export default function CalculatorButtons({ dispatch, currentOperand }) {
             <DigitButton digit="." dispatch={dispatch} />
             <DigitButton digit="0" dispatch={dispatch} />
             <button 
-                className="eval-button" 
+                className="button eval-button" 
                 onClick={() => dispatch({ type: ACTIONS.EVALUATE })}
             >
                 =

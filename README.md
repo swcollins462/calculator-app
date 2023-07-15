@@ -8,10 +8,10 @@ Robust calculator app providing basic arithmetic functions. The app handles floa
 
 Memory functions:
 
-1. MC: clears the value currently stored in memory
-2. M+: adds the current value to the memory value
-3. M-: subtracts the current value from the memory value
-4. MR: recalls the memory value and displays it as the current value for further calculations
+1. MC clears the value currently stored in memory
+2. M+ adds the current value to the memory value
+3. M- subtracts the current value from the memory value
+4. MR recalls the memory value and displays it as the current value for further calculations
 
 Technologies used include:
 

@@ -4,7 +4,7 @@ import NumericDisplay from "./components/NumericDisplay/NumericDisplay";
 import CalculatorButtons from "./components/CalculatorButtons/CalculatorButtons";
 import "./App.css";
 
-Decimal.config({ precision: 12, toExpPos: 12, toExpNeg: -12 });
+Decimal.config({ precision: 10, toExpPos: 10, toExpNeg: -10 });
 
 export const ACTIONS = {
   ADD_DIGIT: 'add-digit',
@@ -32,7 +32,7 @@ function reducer(state, { type, payload }) {
       } else if (
         payload.digit === "." && 
         state.currentOperand.includes(".")) return state;
-      if (state.currentOperand.length < 15) {
+      if (state.currentOperand.length < 11) {
         return {
         ...state,
         currentOperand: `${state.currentOperand}${payload.digit}`
