@@ -2,7 +2,7 @@
 
 Project by Stephen Collins
 
-Hosting link:
+Hosting link: https://swcollins462.github.io/calculator-app/
 
 Robust calculator app providing basic arithmetic functions. The app handles floating point math errors, calculates percentages, allows for the input of negative numbers, and automatically converts large numbers to exponent format. Values in the display are formatted with comma separators for readability. A memory function is provided that allows the user to store a value, add numbers to or subtract from the stored value, and recall the stored value for further calculations.
 
