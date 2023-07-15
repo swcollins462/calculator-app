@@ -1,5 +1,11 @@
 body {
   margin: 0;
   background: linear-gradient(to right, #021b79, #0575e6);
-  min-width: 400px;  
+  min-width: 460px;  
+}
+
+@media screen and (max-width: 460px) {
+  body {
+    background: linear-gradient(to right, #044AB1, #044AB1);
+  }
 }

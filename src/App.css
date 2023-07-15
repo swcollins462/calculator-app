@@ -2,12 +2,6 @@
   display: grid;
   margin-top: 2rem;
   justify-content: center;
-  grid-template-columns: repeat(4, 6rem);
+  grid-template-columns: repeat(4, 6.6rem);
   grid-template-rows: minmax(7rem, auto) minmax(4rem, auto) repeat(6, 6rem);
-}
-
-@media screen and (max-width: 400px) {
-  body {
-    background: linear-gradient(to right, #044AB1, #044AB1);
-  }
 }

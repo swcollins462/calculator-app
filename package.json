@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@namhong2001/react-textfit": "^2.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -40,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "@types/namhong2001__react-textfit": "npm:@types/react-textfit@^1.1.0",
     "gh-pages": "^5.0.0"
   }
 }

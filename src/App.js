@@ -4,7 +4,7 @@ import NumericDisplay from "./components/NumericDisplay/NumericDisplay";
 import CalculatorButtons from "./components/CalculatorButtons/CalculatorButtons";
 import "./App.css";
 
-Decimal.config({ precision: 10, toExpPos: 10, toExpNeg: -10 });
+Decimal.config({ precision: 10, toExpPos: 10, toExpNeg: -5 });
 
 export const ACTIONS = {
   ADD_DIGIT: 'add-digit',
@@ -32,7 +32,7 @@ function reducer(state, { type, payload }) {
       } else if (
         payload.digit === "." && 
         state.currentOperand.includes(".")) return state;
-      if (state.currentOperand.length < 11) {
+      if (state.currentOperand.length < 10) {
         return {
         ...state,
         currentOperand: `${state.currentOperand}${payload.digit}`
@@ -53,7 +53,7 @@ function reducer(state, { type, payload }) {
         return {
           ...state,
           operation: payload.operation,
-          previousOperand: entry.val(),
+          previousOperand: entry.toString(),
           currentOperand: "0",
         };
       };
@@ -82,7 +82,7 @@ function reducer(state, { type, payload }) {
         const entry = new Decimal(state.currentOperand);
         return {
           ...state,
-          currentOperand: entry.negated().val()
+          currentOperand: entry.neg().toString()
         };
       };
       return state;
@@ -92,12 +92,12 @@ function reducer(state, { type, payload }) {
       if (state.operation === "+" || state.operation === "−") {
         return {
         ...state,
-        currentOperand: entry.dividedBy(100).times(state.previousOperand).val()
+        currentOperand: entry.div(100).times(state.previousOperand).toString()
         };
       } else if (state.currentOperand !== "0") {
         return {
           ...state,
-          currentOperand: entry.dividedBy(100).val()
+          currentOperand: entry.div(100).toString()
         };
       };
       return state;
@@ -119,7 +119,7 @@ function reducer(state, { type, payload }) {
         const plusOperand = new Decimal(state.currentOperand);
         return {
           ...state,
-          memory: plusOperand.val(),
+          memory: plusOperand.toString(),
           overwrite: true
         };
       };
@@ -130,14 +130,14 @@ function reducer(state, { type, payload }) {
         const minusOperand = new Decimal(state.memory);
         return {
           ...state,
-          memory: minusOperand.minus(state.currentOperand).val(),
+          memory: minusOperand.minus(state.currentOperand).toString(),
           overwrite: true
         };
       } else if (state.currentOperand !== "0") {
         const minusOperand = new Decimal(0);
         return {
           ...state,
-          memory: minusOperand.minus(state.currentOperand).val(),
+          memory: minusOperand.minus(state.currentOperand).toString(),
           overwrite: true
         };
       };
@@ -181,7 +181,7 @@ function evaluate({ currentOperand, previousOperand, operation }) {
         computation = prev.times(current);
         break
       case "÷":
-        computation = current.d[0] === 0 ? "Error" : prev.dividedBy(current);
+        computation = current.d[0] === 0 ? "Error" : prev.div(current);
         break
       default:
         return;
@@ -192,16 +192,16 @@ function evaluate({ currentOperand, previousOperand, operation }) {
   return computation.toString();
 };
 
-const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
-  maximumFractionDigits: 0,
+const integerFormatter = new Intl.NumberFormat("en-us", {
+  maximumFractionDigits: 0
 });
 
 function formatOperand(operand) {
   if (operand == null) return;
   if (operand === "Error") return "Error";
   const [integer, decimal] = operand.split('.');
-  if (decimal == null) return INTEGER_FORMATTER.format(integer);
-  return `${INTEGER_FORMATTER.format(integer)}.${decimal}`;
+  if (decimal == null) return integerFormatter.format(integer);
+  return `${integerFormatter.format(integer)}.${decimal}`;
 };
 
 const initialState = {
