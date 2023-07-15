@@ -49,11 +49,11 @@ function reducer(state, { type, payload }) {
           operation: payload.operation,
         };
       } else if (state.previousOperand == null) {
-        const operand = new Decimal(state.currentOperand);
+        const entry = new Decimal(state.currentOperand);
         return {
           ...state,
           operation: payload.operation,
-          previousOperand: operand.val(),
+          previousOperand: entry.val(),
           currentOperand: "0",
         };
       };
@@ -122,7 +122,7 @@ function reducer(state, { type, payload }) {
           memory: plusOperand.val(),
           overwrite: true
         };
-      }
+      };
       return state;
     case ACTIONS.MEMORY_SUBTRACT:
       if (state.currentOperand === "." || state.currentOperand === "0.") return state;
@@ -140,7 +140,7 @@ function reducer(state, { type, payload }) {
           memory: minusOperand.minus(state.currentOperand).val(),
           overwrite: true
         };
-      }
+      };
       return state;
     case ACTIONS.MEMORY_RECALL:
       if (state.memory != null) {
@@ -152,12 +152,7 @@ function reducer(state, { type, payload }) {
       };
       return state;
     case ACTIONS.EVALUATE: 
-      if (
-        state.operation == null ||
-        state.previousOperand == null
-      ) {
-        return state;
-      };
+      if (state.operation == null || state.previousOperand == null) return state;
       return {
         ...state,
         overwrite: true,
@@ -167,13 +162,13 @@ function reducer(state, { type, payload }) {
       };
     default:
       return state;
-  }
+  };
 };
 
-function evaluate({ currentOperand, previousOperand, operation}) {
+function evaluate({ currentOperand, previousOperand, operation }) {
   const prev = new Decimal(previousOperand);
   const current = new Decimal(currentOperand);
-  let computation = ""
+  let computation = "";
   try {
     switch(operation) {
       case "+":
@@ -192,9 +187,9 @@ function evaluate({ currentOperand, previousOperand, operation}) {
         return;
     };
   } catch {
-    computation = "Error"
+    computation = "Error";
   };
-  return computation.toString()
+  return computation.toString();
 };
 
 const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
@@ -202,11 +197,11 @@ const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
 });
 
 function formatOperand(operand) {
-  if (operand == null) return
+  if (operand == null) return;
   if (operand === "Error") return "Error";
-  const [integer, decimal] = operand.split('.')
-  if (decimal == null) return INTEGER_FORMATTER.format(integer)
-  return `${INTEGER_FORMATTER.format(integer)}.${decimal}`
+  const [integer, decimal] = operand.split('.');
+  if (decimal == null) return INTEGER_FORMATTER.format(integer);
+  return `${INTEGER_FORMATTER.format(integer)}.${decimal}`;
 };
 
 const initialState = {

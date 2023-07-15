@@ -1,9 +1,8 @@
 .digit-button {
-    font-family: Calibri, Arial, sans-serif;
+    font-family: Calibri, sans-serif;
     font-size: 2.4rem;
     color: whitesmoke;
     cursor: pointer;
-    outline: none;
     background-color: #1F1F1F;
 }
 

@@ -1,8 +1,12 @@
-import React from "react";
 import "./NumericDisplay.css";
 
 export default function NumericDisplay({ 
-    previousOperand, currentOperand, operation, memory, formatOperand }) {
+    previousOperand, 
+    currentOperand, 
+    operation, 
+    memory, 
+    formatOperand 
+}) {
   return (
     <>
       <div className="output">

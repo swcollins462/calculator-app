@@ -1,27 +1,24 @@
 .button {
-    font-family: Calibri, Arial, sans-serif;
+    font-family: Calibri, sans-serif;
     font-size: 2.4rem;
     color: whitesmoke;
     cursor: pointer;
-    outline: none;
     background-color: #272B2E;
 }
 
 .memory-button {
-    font-family: Calibri, Arial, sans-serif;
+    font-family: Calibri, sans-serif;
     font-size: 2rem;
     color: whitesmoke;
     cursor: pointer;
-    outline: none;
     background-color: #393939;
 }
 
 .eval-button {
-    font-family: Calibri, Arial, sans-serif;
+    font-family: Calibri, sans-serif;
     font-size: 2.5rem;
     color: whitesmoke;
     cursor: pointer;
-    outline: none;
     background-color: #003b12;
     grid-column: span 2;
 }
