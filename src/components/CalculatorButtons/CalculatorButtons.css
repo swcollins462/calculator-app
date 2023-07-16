@@ -47,3 +47,7 @@
 .eval-button:hover {
     background-color: #00452c;
 }
+
+.button:active {
+    border: inset 2px black;
+}
