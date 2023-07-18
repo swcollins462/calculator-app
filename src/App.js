@@ -19,6 +19,13 @@ export const ACTIONS = {
   EVALUATE: 'evaluate'
 };
 
+function isOperandComplete(state) {
+  if (state.currentOperand === "." || 
+    state.currentOperand === "0." || 
+    state.currentOperand === "Error") return false;
+  return true;
+};
+
 function reducer(state, { type, payload }) {
   switch(type) {
     case ACTIONS.ADD_DIGIT:
@@ -40,10 +47,9 @@ function reducer(state, { type, payload }) {
       };
       return state;
     case ACTIONS.CHOOSE_OPERATION: 
-      if (state.currentOperand === "." || state.currentOperand === "0.") return state;
-      if (state.currentOperand === "0" && state.previousOperand == null) return state;
+      if (!isOperandComplete(state)) return state;
 
-      if (state.currentOperand === "0") {
+      if (state.currentOperand === "0" && state.previousOperand != null) {
         return {
           ...state,
           operation: payload.operation,
@@ -77,7 +83,7 @@ function reducer(state, { type, payload }) {
         currentOperand: "0"
       };
     case ACTIONS.NEGATE:
-      if (state.currentOperand === "." || state.currentOperand === "0.") return state;
+      if (!isOperandComplete(state)) return state;
       if (state.currentOperand !== "0") {
         const entry = new Decimal(state.currentOperand);
         return {
@@ -87,7 +93,7 @@ function reducer(state, { type, payload }) {
       };
       return state;
     case ACTIONS.PERCENT:
-      if (state.currentOperand === "." || state.currentOperand === "0.") return state;
+      if (!isOperandComplete(state)) return state;
       const entry = new Decimal(state.currentOperand);
       if (state.operation === "+" || state.operation === "−") {
         return {
@@ -107,7 +113,7 @@ function reducer(state, { type, payload }) {
         memory: null
       };
     case ACTIONS.MEMORY_ADD:
-      if (state.currentOperand === "." || state.currentOperand === "0.") return state;
+      if (!isOperandComplete(state)) return state;
       if (state.memory != null && state.currentOperand !== "0") {
         const plusOperand = new Decimal(state.memory);
         return {
@@ -125,7 +131,7 @@ function reducer(state, { type, payload }) {
       };
       return state;
     case ACTIONS.MEMORY_SUBTRACT:
-      if (state.currentOperand === "." || state.currentOperand === "0.") return state;
+      if (!isOperandComplete(state)) return state;
       if (state.memory != null && state.currentOperand !== "0") {
         const minusOperand = new Decimal(state.memory);
         return {
@@ -166,10 +172,10 @@ function reducer(state, { type, payload }) {
 };
 
 function evaluate({ currentOperand, previousOperand, operation }) {
-  const prev = new Decimal(previousOperand);
-  const current = new Decimal(currentOperand);
   let computation = "";
   try {
+    const prev = new Decimal(previousOperand);
+    const current = new Decimal(currentOperand);
     switch(operation) {
       case "+":
         computation = prev.plus(current);
