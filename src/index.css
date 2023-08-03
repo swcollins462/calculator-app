@@ -1,11 +1,21 @@
+html {
+  font-size: 16px;
+}
+
 body {
   margin: 0;
   background: linear-gradient(to right, #021b79, #0575e6);
-  min-width: 460px;  
+  min-width: 360px; 
 }
 
 @media screen and (max-width: 460px) {
   body {
     background: linear-gradient(to right, #044AB1, #044AB1);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 13px;
   }
 }
